@@ -1,8 +1,8 @@
 @extends('layout.main')
 
 @section('content')
-    <div class="container d-flex justify-content-center align-items-center sc-container flex-column">
-        <h1 class="my-5">I nostri comics</h1>
+    <div class="container d-flex sc-container flex-column">
+        <h1 class="mt-5 mb-3">I nostri fumetti</h1>
 
         <table class="table">
 
