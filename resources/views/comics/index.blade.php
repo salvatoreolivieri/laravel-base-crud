@@ -25,7 +25,14 @@
                         <td>
                             <a class="btn btn-success" href="{{route('comics.show', $item)}}">Show</a>
                             <a class="btn btn-primary" href="{{route('comics.edit', $item)}}">Edit</a>
-                            <form class="btn btn-danger" href="{{route('comics.destroy', $item)}}">Delete</form>
+
+                            <form class="d-inline"
+                             action="{{route('comics.destroy', $item)}}"
+                             method="POST">
+                             @csrf
+                             @method('DELETE')
+                             <button class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                 @endforeach
