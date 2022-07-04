@@ -36,6 +36,9 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate( $this->validateRules(), $this->validateMessages() );
+
         $data = $request->all();
 
         $new_comic = new Comic();
@@ -85,6 +88,9 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic )
     {
+
+        $request->validate( $this->validateRules(), $this->validateMessages() );
+
         $data = $request->all();
 
         $comic->update($data);
@@ -104,4 +110,32 @@ class ComicController extends Controller
 
         return redirect()->route('comics.index');
     }
+
+    private function validateRules(){
+        return [
+            'title' => 'required|max:50|min:3',
+            'image' => 'required|max:255|min:10',
+            'type' => 'required|max:50|min:3',
+        ];
+    }
+
+    private function validateMessages(){
+        return [
+
+            'title.required' => 'Il nome è obbligatorio',
+            'title.max' => 'Il nome deve avere al massimo :max caratteri',
+            'title.min' => 'Il nome deve avere minimo :min caratteri',
+
+            'type.required' => 'La tipologia è obbligatoria',
+            'type.max' => 'La tipologia deve avere al massimo :max caratteri',
+            'type.min' => 'La tipologia deve avere minimo :min caratteri',
+
+            'image.required' => 'Il campo Url immagine è obbligatorio',
+            'image.max' => 'Il campo Url immagine deve avere al massimo :max caratteri',
+            'image.min' => 'Il campo Url immagine deve avere minimo :min caratteri',
+
+        ];
+
+    }
+
 }
